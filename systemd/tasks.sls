@@ -24,12 +24,15 @@ systemctl enable {{ task.name }}.service:
       - file: /lib/systemd/system/*
       - cmd: systemctl daemon-reload
 
+{% if task.immediate_restart|default(False)  %}
 systemctl restart {{ task.name }}.service:
   cmd:
     - run
     - watch:
       - file: /lib/systemd/system/*
       - cmd: systemctl daemon-reload
+
+{% endif %}
 
 {% if 'timer' in task  %}
 /lib/systemd/system/{{ task.name }}.timer:
