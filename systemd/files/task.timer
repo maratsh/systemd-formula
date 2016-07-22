@@ -1,0 +1,14 @@
+[Unit]
+{% for opt in task.unit %}
+{{opt}}
+{% endfor %}
+
+[Timer]
+{% for opt in task.timer %}
+{{opt}}
+{% endfor %}
+
+[Install]
+{% for opt in task.install %}
+{{opt}}
+{% endfor %}

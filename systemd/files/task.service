@@ -1,0 +1,14 @@
+[Unit]
+{% for opt in task.unit %}
+{{opt}}
+{% endfor %}
+
+[Service]
+{% for opt in task.service %}
+{{opt}}
+{% endfor %}
+
+[Install]
+{% for opt in task.install %}
+{{opt}}
+{% endfor %}
