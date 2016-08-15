@@ -20,3 +20,5 @@ systemd:
       install: []
       timer:
         - OnUnitInactiveSec=30m
+      timer_install:
+        - WantedBy=multi-user.target

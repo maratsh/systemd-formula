@@ -9,6 +9,6 @@
 {% endfor %}
 
 [Install]
-{% for opt in task.install %}
+{% for opt in task.timer_install %}
 {{opt}}
 {% endfor %}
