@@ -22,3 +22,29 @@ systemd:
         - OnUnitInactiveSec=30m
       timer_install:
         - WantedBy=multi-user.target
+
+#macro
+elasticsearch:
+  override:
+    - name: elasticsearch
+      unit:
+        - Description = Starts and stops a single elasticsearch instance on this system
+      service:
+       - LimitMEMLOCK=infinity
+      install:
+        - WantedBy=multi-user.target
+
+  tasks:
+    - name: background worker
+      unit:
+        - Description = Some background worker
+      service:
+        - ExecStart=/bin/bash /bin/worker.sh
+        - Restart=no
+        - LimitNOFILE=8192
+        - User=application
+      install: []
+      timer:
+        - OnUnitInactiveSec=30m
+      timer_install:
+        - WantedBy=multi-user.target
